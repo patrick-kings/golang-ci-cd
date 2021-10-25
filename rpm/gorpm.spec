@@ -1,14 +1,16 @@
+
 Name:           gorpm
 Version:        1.0
 Release:        1%{?dist}
 Summary:        golang rpm
 
-License:        GPLv3
+License:        MIT
         
-Source0:        %{name}-%{version}.tar.gz
-
 BuildRequires:  golang
 BuildRequires:  systemd-rpm-macros
+
+%define _topdir dist
+
    
 
 %description
@@ -17,17 +19,19 @@ golang rpm
 %global debug_package %{nil}
 
 %prep
-%autosetup
+rm -drf %{_topdir}/BUILD/
+cd ../../
+cp -rf go.mod src/ rpm/  %{_topdir}/BUILD
 
 
 %build
-go build -v -o %{name}
+go build -v -o %{name} ./src
 
 
 %install
 install -Dpm 0755 %{name} %{buildroot}%{_bindir}/%{name}
-install -Dpm 0755 config.json %{buildroot}%{_sysconfdir}/%{name}/config.json
-install -Dpm 644 %{name}.service %{buildroot}%{_unitdir}/%{name}.service
+install -Dpm 0755 rpm/config.json %{buildroot}%{_sysconfdir}/%{name}/config.json
+install -Dpm 644 rpm/%{name}.service %{buildroot}%{_unitdir}/%{name}.service
 
 %check
 # go test should be here... :)
