@@ -14,6 +14,8 @@ BuildRequires:  systemd-rpm-macros
 %description
 golang rpm
 
+%global debug_package %{nil}
+
 %prep
 %autosetup
 
@@ -21,15 +23,14 @@ golang rpm
 %build
 go build -v -o %{name}
 
-%configure
-%make_build
-
 
 %install
 install -Dpm 0755 %{name} %{buildroot}%{_bindir}/%{name}
 install -Dpm 0755 config.json %{buildroot}%{_sysconfdir}/%{name}/config.json
 install -Dpm 644 %{name}.service %{buildroot}%{_unitdir}/%{name}.service
 
+%check
+# go test should be here... :)
 
 %post
 %systemd_post %{name}.service
@@ -42,8 +43,6 @@ install -Dpm 644 %{name}.service %{buildroot}%{_unitdir}/%{name}.service
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
 %config(noreplace) %{_sysconfdir}/%{name}/config.json
-%license add-license-file-here
-%doc add-docs-here
 
 
 

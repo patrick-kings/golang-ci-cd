@@ -3,7 +3,7 @@ Description=golang rpm
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/gorpm -config /etc/my_app/config.json
+ExecStart=/usr/bin/gorpm -config /etc/gorpm/config.json
 
 [Install]
 WantedBy=multi-user.target
