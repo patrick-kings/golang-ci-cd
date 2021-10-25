@@ -19,9 +19,11 @@ jobs:
         with:
           go-version: 1.17
 
+      - name: Test
+        run: go test -v ./src/...
+
       - name: Build RPM
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: sudo apt install golang systemd-rpm-macros
         run: rpmbuild -ba rpm/gorpm.spec
-#     - name: Test
-#       run: go test -v ./...
