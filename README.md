@@ -4,16 +4,26 @@
 
 - install rpm dev tools
 
-  > sudo dnf groupinstall "RPM Development Tools"
+  ```!/bin/bash
+  sudo dnf groupinstall "RPM Development Tools"
+  ```
 
 - Generate a spec file
-  > rpmdev-newspec gorpm.spec
+
+  ```!/bin/bash
+  rpmdev-newspec gorpm.spec
+  ```
+
 - Build the RPM
-  > rpmbuild -ba gorpm.spec
+
+  ```!/bin/bash
+  rpmbuild -ba gorpm.spec
+  ```
+
 - install
 
   ```!/bin/bash
-    sudo dnf install ./dist/RPMS/x86_64/gorpm-1.0-1.fc34.x86_64.rpm
-    sudo systemctl start gorpm
-    curl -L http://localhost:8081
+  sudo dnf install ./dist/RPMS/x86_64/gorpm-1.0-1.fc34.x86_64.rpm
+  sudo systemctl start gorpm
+  curl -L http://localhost:8081
   ```
