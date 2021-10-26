@@ -23,7 +23,7 @@ jobs:
         run: go test -v ./src/...
       
       - name: Install Linux packages
-        run: sudo apt install golang rpm -y
+        run: sudo apt update -y && sudo apt install golang -y
         
       - name: Build RPM
         env:
