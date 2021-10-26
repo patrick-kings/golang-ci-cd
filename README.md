@@ -17,7 +17,7 @@
 - Build the RPM
 
   ```!/bin/bash
-  rpmbuild -ba gorpm.spec
+  rpmbuild -ba rpm/gorpm.spec
   ```
 
 - install
