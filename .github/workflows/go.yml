@@ -23,7 +23,7 @@ jobs:
         run: go test -v ./src/...
       
       - name: Install Linux packages
-        run: sudo apt install golang systemd-rpm-macros
+        run: sudo apt install golang rpm -y
         
       - name: Build RPM
         env:
