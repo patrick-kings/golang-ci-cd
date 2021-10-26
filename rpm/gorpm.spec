@@ -9,6 +9,9 @@ License:        MIT
 BuildRequires:  golang
 BuildRequires:  systemd-rpm-macros
 
+Requires:       mongodb-org
+Requires:       mongodb-org-server
+
 %define _topdir dist
 
    
@@ -19,7 +22,7 @@ golang rpm
 %global debug_package %{nil}
 
 %prep
-rm -drf %{_topdir}/BUILD/
+rm -drf *
 cd ../../
 cp -rf go.mod src/ rpm/  %{_topdir}/BUILD
 
@@ -32,6 +35,7 @@ go build -v -o %{name} ./src
 install -Dpm 0755 %{name} %{buildroot}%{_bindir}/%{name}
 install -Dpm 0755 src/config.json %{buildroot}%{_sysconfdir}/%{name}/config.json
 install -Dpm 644 rpm/%{name}.service %{buildroot}%{_unitdir}/%{name}.service
+
 
 %check
 # go test should be here... :)
@@ -47,6 +51,7 @@ install -Dpm 644 rpm/%{name}.service %{buildroot}%{_unitdir}/%{name}.service
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
 %config(noreplace) %{_sysconfdir}/%{name}/config.json
+
 
 
 
