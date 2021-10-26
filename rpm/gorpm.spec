@@ -30,7 +30,7 @@ go build -v -o %{name} ./src
 
 %install
 install -Dpm 0755 %{name} %{buildroot}%{_bindir}/%{name}
-install -Dpm 0755 rpm/config.json %{buildroot}%{_sysconfdir}/%{name}/config.json
+install -Dpm 0755 src/config.json %{buildroot}%{_sysconfdir}/%{name}/config.json
 install -Dpm 644 rpm/%{name}.service %{buildroot}%{_unitdir}/%{name}.service
 
 %check
